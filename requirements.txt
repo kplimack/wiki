@@ -1,0 +1,7 @@
+django
+south
+django-debug-logging
+django-debug-toolbar
+django-debug
+django-debug-toolbar-extra
+django-bootstrapped

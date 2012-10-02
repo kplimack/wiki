@@ -1,4 +1,10 @@
+# Django Stuff
 *.log
 *.pot
 *.pyc
 local_settings.py
+env*
+sqlite_dbs*
+
+# emacs stuff
+*~
