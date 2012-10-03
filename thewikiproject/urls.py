@@ -5,8 +5,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 admin.autodiscover()
 
 urlpatterns = patterns('',
-                       url(r'^$', include('wiki.urls')),
                        url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
                        url(r'^admin/', include(admin.site.urls)),
+                       url(r'^$', include('wiki.urls')),
                        )
 urlpatterns += staticfiles_urlpatterns()
