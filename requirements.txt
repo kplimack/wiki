@@ -1,5 +1,7 @@
 django
 south
+mysql-python
+django-profiles
 django-debug-logging
 django-debug-toolbar
 django-debug
