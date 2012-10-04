@@ -28,6 +28,7 @@ DATABASES = {
         'NAME': 'wiki',
         'USER': 'wiki',
         'PASSWORD': 'wikipw',
+        'HOST': 'iman',
         'PORT': '',
     }
 }
