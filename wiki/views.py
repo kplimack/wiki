@@ -12,9 +12,11 @@ def index(request):
     else:            
         u = request.user
         nav_menu_left = getSections()
+        breadcrumbs = ["Home"]
         return render_to_response('templates/index.html', {
                 'nav_left_menu': nav_menu_left,
                 'nav_left_active': 'home',
+                'breadcrumbs': breadcrumbs,
                 'user': u,
                 }, context_instance=RequestContext(request))
 

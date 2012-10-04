@@ -1,6 +1,10 @@
 <ul class="breadcrumb">
   <li><a href="#">{{ user }}</a> <span class="divider">|</span></li>
-  <li><a href="#">Home</a> <span class="divider">/</span></li>
-  <li><a href="#">Library</a> <span class="divider">/</span></li>
-  <li class="active">Data</li>
+  {% for crumb in breadcrumbs %}
+  {% if forloop.last %}
+  <li class="active">{{ crumb }}</li>
+  {% else %}
+  <li><a href="#">{{ crumb }}</a> <span class="divider">/</span></li>
+  {% endif %}
+  {% endfor %}
 </ul>
