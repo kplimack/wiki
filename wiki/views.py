@@ -35,8 +35,8 @@ def login_user(request):
                 msg = "Account not found"
         else:
             msg = "Incorrect username/password"
-    if success:
-        index()
+        if success:
+            index()
     else:
         return render_to_response('templates/login.html', {
                 'state': msg,
