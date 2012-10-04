@@ -36,7 +36,7 @@ def login_user(request):
         else:
             msg = "Incorrect username/password"
         if success:
-            index()
+            return index(request)
     else:
         return render_to_response('templates/login.html', {
                 'state': msg,
