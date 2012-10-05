@@ -5,7 +5,7 @@ from django.contrib.auth.models import *
 from django.contrib.auth import login, authenticate, logout
 from wiki.models import *
 
-def index(request, section_name=None, page_name=None):
+def index(request, section_name=None, page_name=None, page_mode=None):
     if not request.user.is_authenticated():
         return render_to_response('templates/login.html',
                                   context_instance=RequestContext(request))
@@ -16,7 +16,9 @@ def index(request, section_name=None, page_name=None):
         active_page_name='home'
         content_page='home'
         content_bag_extra = {}
-
+        print "SECTION_NAME=%s" % section_name
+        print "PAGE_NAME=%s" % page_name
+        print "PAGE_MODE=%s" % page_mode
         if section_name is not None:
             breadcrumbs.append(section_name)
             active_page_name=section_name
@@ -28,14 +30,17 @@ def index(request, section_name=None, page_name=None):
                 content_page='section'
                 content_bag_extra['articles'] = articles
             else:
-                print "Finding PAGE=%s" % page_name
                 breadcrumbs.append(page_name)
-                content_page = 'page'
-                content_bag_extra['page_name'] = page_name
                 page = getPage(page_name)
-                page_rendered = renderPage(page.content)
+                if page_mode == 'edit':
+                    content_page = 'page_edit'
+                else:
+                    content_page = 'page'
+                    page_rendered = renderPage(page.content)
+                    content_bag_extra['page_rendered'] = page_rendered
+
+                content_bag_extra['page_name'] = page_name
                 content_bag_extra['page'] = page
-                content_bag_extra['page_rendered'] = page_rendered
 
         content_bag_common = {
             'nav_left_menu': nav_menu_left,

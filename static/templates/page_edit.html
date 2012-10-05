@@ -2,11 +2,12 @@
 <div class="row-fluid">
   <div class="span9">
     <div class="page-header">
-      <h1><small>{{ section_name }} </small>{{ page_name }}</h1>
+      <h1><small>{{ section_name }}</small> {{ page_name }}</h1>
     </div>
+    {% include "templates/page_edit_toolbar.html" %}
     <p>
       {% autoescape off %}
-      {{ page_rendered }}
+      <textarea class="field span12" rows="25" style="resize:none;">{{ page.content }}</textarea>
       {% endautoescape %}
     </p>
     <div>
@@ -17,7 +18,8 @@
     </div>
     <hr />
     <div>
-      <a href="{% url 'wiki.views.index' section_name page_name 'edit' %}" class="btn"><i class="icon-edit"></i> <strong>Edit</strong></a>
+      <a href="#" class="btn"><i class="icon-ok"></i> <strong>Save</strong></a>
+      <a href="#" class="btn"><i class="icon-remove"></i> <strong>Cancel</strong></a>
       <a href="#" class="btn"><i class="icon-trash"></i> <strong>Delete</strong></a>
     </div>
   </div><!--/span-->
