@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'django.contrib.admindocs',
     'wiki',
+    'south',
 )
 # DEBUG_TOOLBAR_PANELS = (
 #     'debug_toolbar.panels.version.VersionDebugPanel',
