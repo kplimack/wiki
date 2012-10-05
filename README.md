@@ -13,3 +13,7 @@ Everytime I switch dev boxes, I keep forgetting to initialize Git-Submodules whi
 <code>
 git submodule init && git submodule update
 </code>
+
+Screenshots
+===
+![Page View](screenshot.png)
