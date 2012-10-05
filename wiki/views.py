@@ -5,7 +5,7 @@ from django.contrib.auth.models import *
 from django.contrib.auth import login, authenticate, logout
 from wiki.models import *
 
-def index(request, section_name=None):
+def index(request, section_name=None, page_name=None):
     if not request.user.is_authenticated():
         return render_to_response('templates/login.html', 
                                   context_instance=RequestContext(request))
@@ -14,15 +14,33 @@ def index(request, section_name=None):
         nav_menu_left = getSections()
         breadcrumbs = ["Home"]
         active_page_name='home'
+        content_page='home'
+        content_bag_extra = {}
+
         if section_name != None:
             breadcrumbs.append(section_name)
             active_page_name=section_name
-        return render_to_response('templates/index.html', {
-                'nav_left_menu': nav_menu_left,
-                'nav_left_active': active_page_name,
-                'breadcrumbs': breadcrumbs,
-                'user': u,
-                }, context_instance=RequestContext(request))
+            articles = getArticles(section_name)
+            print "ARTICLES: %s" % articles
+            content_page='section'
+            content_bag_extra = {
+                'articles': articles,
+                'section_name': section_name,
+                }
+
+        content_bag_common = { 
+            'nav_left_menu': nav_menu_left,
+            'nav_left_active': active_page_name,
+            'breadcrumbs': breadcrumbs,
+            'user': u,
+            'content_page': content_page,
+            }
+
+        content_bag = dict(content_bag_common.items() + content_bag_extra.items())
+        print "Content_bag=%s" % content_bag
+        return render_to_response('templates/index.html', 
+                                  content_bag,
+                                  context_instance=RequestContext(request))
 
 def login_user(request):
     msg = "Please login below..."
@@ -56,4 +74,8 @@ def logout_user(request):
 
 def getSections():
     query = Section.objects.order_by('name')
+    return query
+
+def getArticles(section_name):
+    query = Page.objects.filter(section__name__exact=section_name).order_by('name')
     return query
