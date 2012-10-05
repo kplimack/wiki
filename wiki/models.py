@@ -12,5 +12,6 @@ class Page(models.Model):
     content = models.TextField()
     user = models.ForeignKey(User,null=True,blank=True,default=None)
     section = models.ForeignKey('Section')
+    updated_at = models.DateTimeField(auto_now = True)
     def __unicode__(self):
         return self.name

@@ -9,6 +9,17 @@
       {{ page_rendered }}
       {% endautoescape %}
     </p>
+    <div>
+      <span class="badge badge-success">Updated {{ page.updated_at }}</span>
+      <div class="pull-right">
+	<span class="label">{{ page.user.first_name }} {{ page.user.last_name }}</span>
+      </div>
+    </div>
+    <hr />
+    <div>
+      <a href="#" class="btn"><i class="icon-edit"></i> <strong>Edit</strong></a>
+      <a href="#" class="btn"><i class="icon-trash"></i> <strong>Delete</strong></a>
+    </div>
   </div><!--/span-->
   <div class="span3" style="background: khaki;">
     <h3>Page Info</h3>
