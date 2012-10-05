@@ -10,7 +10,7 @@
       <a class="brand" href="#">Wiki</a>
       <div class="nav-collapse collapse">
         <p class="navbar-text pull-right">
-          <a href="{% url 'wiki.views.logout_user' %}" class="navbar-link">LOGOUT ( {{ user }} )</a> &nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="{% url 'wiki.views.logout_user' %}" class="navbar-link">LOGOUT ( {{ user.first_name }} {{ user.last_name }} )</a> &nbsp;&nbsp;&nbsp;&nbsp;
           <input type="text" class="search-query" placeholder="Search">
         </p>
         <ul class="nav">
