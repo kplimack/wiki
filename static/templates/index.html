@@ -4,16 +4,22 @@
   {% include "templates/nav_top.html" %}
   <div class="container-fluid">
     <div class="row-fluid">
-      <div class="span3">
-        {% include "templates/nav_left.html" %}
-      </div><!--/span-->
-      <div class="span9">
-        <div class="row-fluid">
-          <div class="span12" style="background: pink;">
-            {% include "templates/breadcrumbs.html" %}
+      <div class="span12">
+	<div class="span3">
+          {% include "templates/nav_left.html" %}
+	</div><!--/span3-->
+	<div class="span9">
+          <div class="row-fluid">
+            <div class="span12">
+              {% include "templates/breadcrumbs.html" %}
+            </div>
           </div>
-        </div>
-        {% include "templates/content_home.html" %}
-      </div><!--/span-->
-    </div><!--/row-->
+	  {% if content_page == 'section' %}
+          {% include "templates/content_section.html" %}
+	  {% else %}
+	  {% include "templates/content_home.html" %}
+	  {% endif %}
+	</div><!--/span-->
+      </div><!--/row-->
+    </div>
     {% include "templates/footer.html" %}

@@ -1,0 +1,24 @@
+{% load url from future %}
+<div class="row-fluid">
+  <div class="span9">
+    <div class="page-header">
+      <h1>{{ section_name }} <small>Subtext for header</small></h1>
+    </div>
+    <p>
+      <ul>
+	{% for a in articles %}
+	<li><a href="{% url 'wiki.views.index' section_name a.name %}">{{ a.name }}</a></li>
+	{% endfor %}
+      </ul>
+    </p>
+    <p><a class="btn" href="#">View details &raquo;</a></p>
+  </div><!--/span-->
+  <div class="span3" style="background: khaki;">
+    <h3>Page Info</h3>
+    <ul>
+      <li>foo</li>
+      <li>bar</li>
+      <li>baz</li>
+    </ul>
+  </div>
+</div><!--/row-->
