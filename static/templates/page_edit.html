@@ -7,7 +7,7 @@
     {% include "templates/page_edit_toolbar.html" %}
     <p>
       {% autoescape off %}
-      <textarea class="field span12" rows="25" style="resize:none;">{{ page.content }}</textarea>
+      <textarea id="page_content_raw" class="field span12" rows="25" style="resize:none;">{{ page.content }}</textarea>
       {% endautoescape %}
     </p>
     <div>
