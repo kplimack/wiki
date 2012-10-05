@@ -7,9 +7,9 @@ from wiki.models import *
 
 def index(request, section_name=None, page_name=None):
     if not request.user.is_authenticated():
-        return render_to_response('templates/login.html', 
+        return render_to_response('templates/login.html',
                                   context_instance=RequestContext(request))
-    else:            
+    else:
         u = request.user
         nav_menu_left = getSections()
         breadcrumbs = ["Home"]
@@ -17,18 +17,27 @@ def index(request, section_name=None, page_name=None):
         content_page='home'
         content_bag_extra = {}
 
-        if section_name != None:
+        if section_name is not None:
             breadcrumbs.append(section_name)
             active_page_name=section_name
-            articles = getArticles(section_name)
-            print "ARTICLES: %s" % articles
-            content_page='section'
             content_bag_extra = {
-                'articles': articles,
                 'section_name': section_name,
                 }
+            if page_name is None:
+                articles = getArticles(section_name)
+                content_page='section'
+                content_bag_extra['articles'] = articles
+            else:
+                print "Finding PAGE=%s" % page_name
+                breadcrumbs.append(page_name)
+                content_page = 'page'
+                content_bag_extra['page_name'] = page_name
+                page = getPage(page_name)
+                page_rendered = renderPage(page.content)
+                content_bag_extra['page'] = page
+                content_bag_extra['page_rendered'] = page_rendered
 
-        content_bag_common = { 
+        content_bag_common = {
             'nav_left_menu': nav_menu_left,
             'nav_left_active': active_page_name,
             'breadcrumbs': breadcrumbs,
@@ -38,7 +47,7 @@ def index(request, section_name=None, page_name=None):
 
         content_bag = dict(content_bag_common.items() + content_bag_extra.items())
         print "Content_bag=%s" % content_bag
-        return render_to_response('templates/index.html', 
+        return render_to_response('templates/index.html',
                                   content_bag,
                                   context_instance=RequestContext(request))
 
@@ -79,3 +88,25 @@ def getSections():
 def getArticles(section_name):
     query = Page.objects.filter(section__name__exact=section_name).order_by('name')
     return query
+
+def getPage(page_name):
+    query = Page.objects.get(name=page_name)
+    return query
+
+def renderPage(content):
+    #    "<br />".join(page.content.split("\n"))
+    page_rendered = ''
+    leave_alone=False
+    ignores_start = "<pre>"
+    ignores_stop = "</pre>"
+
+    for line in content.split("\n"):
+        if ignores_start in line:
+            leave_alone=True
+        if ignores_stop in line:
+            leave_alone=False
+        if leave_alone:
+            page_rendered += line
+        else:
+            page_rendered += "<br />".join(line.split("\n"))
+    return page_rendered

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Section(models.Model):
     name = models.CharField(max_length=50)
-    
+
     def __unicode__(self):
         return self.name
 
