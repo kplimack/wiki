@@ -1,9 +1,12 @@
+{% load url from future %}
 <div class="well sidebar-nav">
   <ul class="nav nav-list">
     <li class="nav-header">Sections</li>
-    <li {% if nav_left_active == 'home' %}class="active" {% endif %}><a href="{% url wiki-home %}">Home</a></li>
+    <li {% if nav_left_active == 'home' %}class="active" {% endif %}><a href="{% url 'wiki-home' %}">Home</a></li>
     {% for item in nav_left_menu %}
-    <li><a {% if item.name == nav_left_active %}class="active" {% endif %} href="#">{{ item }}</a></li>
+    <li {% if item.name == nav_left_active %}class="active" {% endif %}>
+      <a href="{% url 'wiki.views.index' item.name %}">{{ item }}</a>
+    </li>
     {% endfor %}
     <li class="nav-header">Sidebar</li>
     <li><a href="#">Link</a></li>

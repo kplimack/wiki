@@ -5,7 +5,7 @@ from django.contrib.auth.models import *
 from django.contrib.auth import login, authenticate
 from wiki.models import *
 
-def index(request):
+def index(request, section_name=None):
     if not request.user.is_authenticated():
         return render_to_response('templates/login.html', 
                                   context_instance=RequestContext(request))
@@ -13,9 +13,13 @@ def index(request):
         u = request.user
         nav_menu_left = getSections()
         breadcrumbs = ["Home"]
+        active_page_name='home'
+        if section_name != None:
+            breadcrumbs.append(section_name)
+            active_page_name=section_name
         return render_to_response('templates/index.html', {
                 'nav_left_menu': nav_menu_left,
-                'nav_left_active': 'home',
+                'nav_left_active': active_page_name,
                 'breadcrumbs': breadcrumbs,
                 'user': u,
                 }, context_instance=RequestContext(request))
