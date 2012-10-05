@@ -17,3 +17,4 @@ git submodule init && git submodule update
 Screenshots
 ===
 ![Page View](https://raw.github.com/kplimack/wiki/master/screenshot.png)
+![Page Edit](https://raw.github.com/kplimack/wiki/master/screenshot_editmode.png)
