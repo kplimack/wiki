@@ -10,7 +10,7 @@ class Section(models.Model):
 class Page(models.Model):
     name = models.CharField(max_length=255, unique=True)
     content = models.TextField()
-    author = models.ForeignKey(User, unique=True)
+    user = models.ForeignKey(User,null=True,blank=True,default=None)
     section = models.ForeignKey('Section')
     def __unicode__(self):
         return self.name
