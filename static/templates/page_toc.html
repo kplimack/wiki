@@ -1,0 +1,6 @@
+<h5>Table of Contents</h5>
+<ol>
+{% for heading in toc %}
+<li><a href="#{{ heading.url }}">{{ heading.name }}</a></li>
+{% endfor %}
+</ol>

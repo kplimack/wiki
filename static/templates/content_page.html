@@ -18,15 +18,9 @@
     <hr />
     <div>
       <a href="{% url 'wiki.views.index' section_name page_name 'edit' %}" class="btn"><i class="icon-edit"></i> <strong>Edit</strong></a>
-      <a href="#" class="btn"><i class="icon-trash"></i> <strong>Delete</strong></a>
     </div>
-  </div><!--/span-->
-  <div class="span3" style="background: khaki;">
-    <h3>Page Info</h3>
-    <ul>
-      <li>foo</li>
-      <li>bar</li>
-      <li>baz</li>
-    </ul>
-  </div>
+  </div><!--/span9-->
+  <div class="span3">
+    {% include "templates/page_toc.html" %}
+  </div><!-- /span3 -->
 </div><!--/row-->

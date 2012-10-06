@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.contrib.auth.models import *
 from django.contrib.auth import login, authenticate, logout
 from wiki.models import *
+import re
 
 def index(request, section_name=None, page_name=None, page_mode=None):
     if not request.user.is_authenticated():
@@ -37,8 +38,9 @@ def index(request, section_name=None, page_name=None, page_mode=None):
                     content_page = 'page_edit'
                 else:
                     content_page = 'page'
-                    page_rendered = renderPage(page.content)
+                    (page_rendered, toc) = renderPage(page.content)
                     content_bag_extra['page_rendered'] = page_rendered
+                    content_bag_extra['toc'] = toc
 
                 content_bag_extra['page_name'] = page_name
                 content_bag_extra['page'] = page
@@ -111,12 +113,15 @@ def page_save(request, section_name, page_name):
         page.save()
     return HttpResponseRedirect(reverse('wiki.views.index', args=(section_name, page_name)))
 
+def cleanURL(urlString):
+    return "_".join(urlString.split(" "))
+
 def renderPage(content):
     page_rendered = ''
     leave_alone=False
     ignores_start = "<pre>"
     ignores_stop = "</pre>"
-
+    toc = []
     for line in content.split("\n"):
         if ignores_start in line:
             leave_alone=True
@@ -126,4 +131,16 @@ def renderPage(content):
             page_rendered += line
         else:
             page_rendered += "<br />".join(line.split("\n"))
-    return page_rendered
+
+        matchObj = re.match( r'<h[1-6]>(.*)</h[1-6]>', line, re.M|re.I)
+        if matchObj:
+            anchor = {
+                'name': matchObj.group(1),
+                'url': cleanURL(matchObj.group(1)),
+                }
+            toc.append(anchor)
+            page_rendered += '<a name="' + anchor['url'] + '"></a>'
+            print "MATCHED %s" % matchObj.group()
+        else:
+            print "could not match headers in: %s" % line
+    return (page_rendered, toc)
