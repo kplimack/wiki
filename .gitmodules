@@ -1,3 +1,6 @@
 [submodule "static/bootstrap"]
 	path = static/bootstrap
 	url = https://github.com/kplimack/bootstrap.git
+[submodule "static/fontawesome"]
+	path = static/fontawesome
+	url = https://github.com/FortAwesome/Font-Awesome.git
