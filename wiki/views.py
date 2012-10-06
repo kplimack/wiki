@@ -1,4 +1,5 @@
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.contrib.auth.models import *
@@ -98,8 +99,19 @@ def getPage(page_name):
     query = Page.objects.get(name=page_name)
     return query
 
+def page_save(request, section_name, page_name):
+    page = get_object_or_404(Page, name=page_name)
+    try:
+        page_content = request.POST['page_content_raw']
+    except:
+        return HttpResponseRedirect(reverse('wiki.views.index', args=(section_name, page_name)))
+    else:
+        page.content = page_content
+        page.user = request.user
+        page.save()
+    return HttpResponseRedirect(reverse('wiki.views.index', args=(section_name, page_name)))
+
 def renderPage(content):
-    #    "<br />".join(page.content.split("\n"))
     page_rendered = ''
     leave_alone=False
     ignores_start = "<pre>"

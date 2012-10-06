@@ -5,23 +5,26 @@
       <h1><small>{{ section_name }}</small> {{ page_name }}</h1>
     </div>
     {% include "templates/page_edit_toolbar.html" %}
-    <p>
-      {% autoescape off %}
-      <textarea id="page_content_raw" class="field span12" rows="25" style="resize:none;">{{ page.content }}</textarea>
-      {% endautoescape %}
-    </p>
-    <div>
-      <span class="badge badge-success">Updated {{ page.updated_at }}</span>
-      <div class="pull-right">
-	<span class="label">{{ page.user.first_name }} {{ page.user.last_name }}</span>
+    <form action="{% url 'wiki.views.page_save' section_name page_name %}" method="post">
+      {% csrf_token %}
+      <p>
+        {% autoescape off %}
+        <textarea id="page_content_raw" name="page_content_raw" class="field span12" rows="25" style="resize:none;">{{ page.content }}</textarea>
+        {% endautoescape %}
+      </p>
+      <div>
+        <span class="badge badge-success">Updated {{ page.updated_at }}</span>
+        <div class="pull-right">
+          <span class="label">{{ page.user.first_name }} {{ page.user.last_name }}</span>
+        </div>
       </div>
-    </div>
-    <hr />
-    <div>
-      <a href="#" class="btn"><i class="icon-ok"></i> <strong>Save</strong></a>
-      <a href="#" class="btn"><i class="icon-remove"></i> <strong>Cancel</strong></a>
-      <a href="#" class="btn"><i class="icon-trash"></i> <strong>Delete</strong></a>
-    </div>
+      <hr />
+      <div>
+        <button type="submit" class="btn"><i class="icon-ok"></i> <strong>Save</strong></button>
+        <a href="#" class="btn"><i class="icon-remove"></i> <strong>Cancel</strong></a>
+        <a href="#" class="btn"><i class="icon-trash"></i> <strong>Delete</strong></a>
+      </div>
+    </form>
   </div><!--/span-->
   <div class="span3" style="margin-top: 80px;">
     {% include "templates/page_edit_examples.html" %}
