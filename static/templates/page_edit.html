@@ -1,4 +1,6 @@
 {% load url from future %}
+{% include "templates/modal_rename.html" %}
+{% include "templates/modal_delete.html" %}
 <div class="row-fluid">
   <div class="span9">
     <div class="page-header">
@@ -21,8 +23,9 @@
       <hr />
       <div>
         <button type="submit" class="btn"><i class="icon-ok"></i> <strong>Save</strong></button>
-        <a href="#" class="btn"><i class="icon-remove"></i> <strong>Cancel</strong></a>
-        <a href="#" class="btn"><i class="icon-trash"></i> <strong>Delete</strong></a>
+        <a href="{% url 'wiki.views.index' section_name page_name %}" class="btn"><i class="icon-remove"></i> <strong>Cancel</strong></a>
+        <a href="#renameModal" role="button" class="btn" data-toggle="modal"><i class="icon-tags"></i> <strong>Rename</strong></a>
+        <a href="#deleteModal" role="button" class="btn" data-toggle="modal"><i class="icon-trash"></i> <strong>Delete</strong></a>
       </div>
     </form>
   </div><!--/span-->

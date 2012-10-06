@@ -113,6 +113,21 @@ def page_save(request, section_name, page_name):
         page.save()
     return HttpResponseRedirect(reverse('wiki.views.index', args=(section_name, page_name)))
 
+def page_rename(request, section_name, page_name):
+    # though unused now, I plan to add a setion selector to the rename modal
+    # since rename is essentially the same thing as move, which means I should be checking for conflicts
+    page = get_object_or_404(Page, name=page_name)
+    try:
+        page_newname = request.POST['page_newname']
+    except:
+        print "RENAME FAILED. request.POST=%s" % request.POST
+        return HttpResponseRedirect(reverse('wiki.views.index', args=(section_name, page_name)))
+    else:
+        page.name = page_newname
+        page.user = request.user
+        page.save()
+    return HttpResponseRedirect(reverse('wiki.views.index', args=(section_name, page.name)))
+
 def cleanURL(urlString):
     return "_".join(urlString.split(" "))
 
