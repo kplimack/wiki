@@ -8,3 +8,6 @@ sqlite_dbs*
 
 # emacs stuff
 *~
+
+# OSX stuff
+*DS_Store
