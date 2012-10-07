@@ -135,6 +135,12 @@ def page_archive(request, section_name, page_name):
     page.save()
     return HttpResponseRedirect(reverse('wiki.views.index', args=(section_archive, page.name)))
 
+def page_new(request):
+    return HttpResponseRedirect(reverse('wiki.views.index'))
+
+def section_new(request):
+    return HttpResponseRedirect(reverse('wiki.views.index'))
+
 def cleanURL(urlString):
     return "_".join(urlString.split(" "))
 

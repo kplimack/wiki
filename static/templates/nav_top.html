@@ -14,9 +14,9 @@
           <input type="text" class="search-query" placeholder="Search">
         </p>
         <ul class="nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li class="active"><a href="{% url 'wiki.views.index' %}">Home</a></li>
+          <li><a href="{% url 'wiki.views.section_new' %}">New Section</a></li>
+          <li><a href="{% url 'wiki.views.page_new' %}">New Page</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
