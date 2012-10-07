@@ -1,9 +1,10 @@
+{% load url from future %}
 <ul class="breadcrumb">
   {% for crumb in breadcrumbs %}
   {% if forloop.last %}
-  <li class="active">{{ crumb }}</li>
+  <li class="active">{{ crumb.name }}</li>
   {% else %}
-  <li><a href="#">{{ crumb }}</a> <span class="divider">/</span></li>
+  <li><a href="{% url crumb.url crumb.args %}">{{ crumb.name }}</a> <span class="divider">/</span></li>
   {% endif %}
   {% endfor %}
 </ul>

@@ -14,7 +14,10 @@ def index(request, section_name=None, page_name=None, page_mode=None):
     else:
         u = request.user
         nav_menu_left = getSections()
-        breadcrumbs = ["Home"]
+        breadcrumbs = [{
+            'name': "Home",
+            'url': 'wiki.views.index',
+            }]
         active_page_name='home'
         content_page='home'
         content_bag_extra = {}
@@ -22,7 +25,11 @@ def index(request, section_name=None, page_name=None, page_mode=None):
         print "PAGE_NAME=%s" % page_name
         print "PAGE_MODE=%s" % page_mode
         if section_name is not None:
-            breadcrumbs.append(section_name)
+            breadcrumbs.append({
+                    'name': section_name,
+                    'url': 'wiki.views.index',
+                    'args': section_name,
+                    })
             active_page_name=section_name
             content_bag_extra = {
                 'section_name': section_name,
@@ -32,7 +39,9 @@ def index(request, section_name=None, page_name=None, page_mode=None):
                 content_page='section'
                 content_bag_extra['articles'] = articles
             else:
-                breadcrumbs.append(page_name)
+                breadcrumbs.append({
+                        'name': page_name,
+                        })
                 page = getPage(page_name)
                 if page_mode == 'edit':
                     content_page = 'page_edit'
