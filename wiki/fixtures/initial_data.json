@@ -22,6 +22,13 @@
     },
     {
 	"pk": 4,
+	"model": "wiki.section",
+	"fields": {
+	    "name": "Archive"
+	}
+    },
+    {
+	"pk": 5,
 	"model": "wiki.page",
 	"fields": {
 	    "content": "<h3> Architecture </h3>\r\nThis wiki is written in Django\r\n\r\n<h3>Components</h3>\r\n<ul>\r\n<li>Bootstrap</li>\r\n</ul>",
@@ -32,7 +39,7 @@
 	}
     },
     {
-	"pk": 5,
+	"pk": 6,
 	"model": "wiki.page",
 	"fields": {
 	    "content": "<h3>Getting Started with Django</h3>\r\n<h4>Installing Prerequesites</h4>\r\n<ul>\r\n <li>Homebrew\r\n<pre>ruby -e \"$(curl -fsSkL raw.github.com/mxcl/homebrew/go)\"\r\nbrew doctor</pre>\r\n</li>\r\n <li>Brew Packages\r\n<pre>brew install git readline sqlite gdbm \r\nbrew install python --universal --framework </pre></li>\r\n <li>Pip\r\n<pre>easy_install pip \r\npip install virtualenv</pre>\r\n</li>\r\n</ul>\r\n\r\n<h3>Setting up a dev environment</h3>\r\nYou should add a couple basic packages to requirements.txt: django, south, django-debug-toolbar\r\n<pre>\r\nvirtualenv env\r\nsource ./env/bin/activate\r\npip install -r requirements.txt\r\nchmod +x manage.py\r\n./manage.py startproject <project>\r\n./manage.py startapp <app>\r\n</pre>",
