@@ -146,8 +146,22 @@ def page_archive(request, section_name, page_name):
     page.save()
     return HttpResponseRedirect(reverse('wiki.views.index', args=(section_archive, page.name)))
 
-def page_new(request):
-    return HttpResponseRedirect(reverse('wiki.views.index'))
+def page_add(request):
+    page_name = request.POST['page_name']
+    page_section = request.POST['page_section']
+    if page_name == "" or page_section == "":
+        return HttpResponseRedirect(reverse('wiki.views.index'))
+    try:
+        section = Section.objects.get(name=page_section)
+        page = Page.create(page_name, section, request.user)
+        page.save()
+    except:
+        print "an error occurred creating page '%s' in section '%s' by '%s'" % (page_name, page_section, request.user)
+    else:
+        return HttpResponseRedirect(reverse('wiki.views.index', kwargs={
+                    'section_name': section.name,
+                    'page_name': page_name,
+                    }))
 
 def section_add(request):
     new_section = request.POST['new_section']

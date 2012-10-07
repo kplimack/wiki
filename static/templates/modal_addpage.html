@@ -7,11 +7,12 @@
   <div class="modal-body" style="height: 180px;">
     <div class="row-fluid">
       <div class="span12">
-        <form action="#" method="post">
+        <form action="{% url 'wiki.views.page_add' %}" method="post">
           {% csrf_token %}
           <div class="control-group">
             <div class="btn-group">
               <a class="btn btn-primary" id="section_name" href="#"><i class="icon-glass icon-white"></i> Section</a>
+	      <input type="hidden" name="page_section" id="page_section" />
               <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <div id="section_dropdown" name="section_name"></div>

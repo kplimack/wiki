@@ -19,8 +19,15 @@ class Page(models.Model):
     user = models.ForeignKey(User,null=True,blank=True,default=None)
     section = models.ForeignKey('Section')
     updated_at = models.DateTimeField(auto_now = True)
+
+    @classmethod
+    def create(cls, page_name, page_section, page_user):
+        page = cls(
+            name = page_name,
+            section = page_section,
+            user = page_user
+            )
+        return page
+
     def __unicode__(self):
         return self.name
-
-    class Meta:
-        get_latest_by = 'updated_at'

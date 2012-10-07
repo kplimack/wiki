@@ -49,6 +49,7 @@
               $('#addSectionModal').modal('show');
             } else {
               $('#section_name').html('<i class="icon-glass icon-white"></i>&nbsp;&nbsp;' + this.id);
+              $('#page_section').val(this.id);
               $('.dropdown-menu').dropdown('toggle');
               return false;
             }
