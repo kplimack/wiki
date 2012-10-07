@@ -44,7 +44,7 @@ def index(request, section_name=None, page_name=None, page_mode=None):
 
                 content_bag_extra['page_name'] = page_name
                 content_bag_extra['page'] = page
-        if content_page is 'home':
+        if content_page in ['home', 'section']:
             content_bag_extra['last_updated'] = getLatest()
         content_bag_common = {
             'nav_left_menu': nav_menu_left,
