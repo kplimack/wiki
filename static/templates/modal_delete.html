@@ -1,24 +1,26 @@
+{% load url from future %}
 <div id="deleteModal" class="modal hide fade" style="width: 400px; margin-left: -200;">
-    <div class="modal-header">
-            <button class="close" data-dismiss="modal">×</button>
-            <h3>Delete Page: {{ page_name }}</h3>
-    </div>
-<div class="modal-body">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">×</button>
+    <h3>Delete Page: {{ page_name }}</h3>
+  </div>
+  <div class="modal-body">
     <div class="row-fluid">
+      <form action="{% url 'wiki.views.page_archive' section_name page_name %}" method="post" class="form-inline">
         <div class="span12">
-          <form class="form-horizontal">
-            <p class="help-block">This is a really bad idea.  Deleting a page will result in broken links, not to mention that it is irreversible and this data will be lost.  Instead, we recommend you archive this page, disk usage of each page is negligible, so there's not good reason not to.</p>
-            <hr>
-            <div class="help-block pull-right">
-              <button type="submit" class="btn btn-large btn-inverse" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-large btn-danger">Delete Forever</button>
-	      <button type="submit" class="btn btn-large btn-success">Archive</button>
-            </div>
-          </form>
+          <p class="help-block">This is a really bad idea.  Deleting a page will result in broken links, not to mention that it is irreversible and this data will be lost.  Instead, we recommend you archive this page, disk usage of each page is negligible, so there's not good reason not to.</p>
+          <hr>
+          <div class="help-block pull-right">
+            <button type="submit" class="btn btn-large btn-inverse" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-large btn-danger">Delete Forever</button>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-large btn-success">Archive</button>
+          </div>
         </div>
+      </form>
     </div>
-</div>
-    <div class="modal-footer">
-        <div class="text-error"><p>Deleting a page is irreversible, you should archive it!</p></div>
-    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="text-error"><p>Deleting a page is irreversible, you should archive it!</p></div>
+  </div>
 </div>

@@ -128,6 +128,13 @@ def page_rename(request, section_name, page_name):
         page.save()
     return HttpResponseRedirect(reverse('wiki.views.index', args=(section_name, page.name)))
 
+def page_archive(request, section_name, page_name):
+    page = get_object_or_404(Page, name=page_name)
+    section_archive = get_object_or_404(Section, name='archive')
+    page.section = section_archive
+    page.save()
+    return HttpResponseRedirect(reverse('wiki.views.index', args=(section_archive, page.name)))
+
 def cleanURL(urlString):
     return "_".join(urlString.split(" "))
 
