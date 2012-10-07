@@ -1,0 +1,12 @@
+<table class="table table-condensed table-hover">
+  <thead>
+    <tr><th>Recently Updated</th></tr>
+  </thead>
+  <tbody>
+    {% for p in last_updated %}
+    <tr><td><a href="#"><strong class="lead">{{ p }}</strong></a> by
+	  <span class="badge badge-success">{{ p.user.first_name }} {{ p.user.last_name }}</span><br />
+	  at {{ p.updated_at }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>

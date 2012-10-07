@@ -44,7 +44,8 @@ def index(request, section_name=None, page_name=None, page_mode=None):
 
                 content_bag_extra['page_name'] = page_name
                 content_bag_extra['page'] = page
-
+        if content_page is 'home':
+            content_bag_extra['last_updated'] = getLatest()
         content_bag_common = {
             'nav_left_menu': nav_menu_left,
             'nav_left_active': active_page_name,
@@ -143,6 +144,10 @@ def section_new(request):
 
 def cleanURL(urlString):
     return "_".join(urlString.split(" "))
+
+def getLatest(numPages=10):
+    last_updated = Page.objects.order_by('-updated_at')[:numPages]
+    return last_updated
 
 def renderPage(content):
     page_rendered = ''

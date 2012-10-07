@@ -15,3 +15,6 @@ class Page(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        get_latest_by = 'updated_at'

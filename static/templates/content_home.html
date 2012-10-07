@@ -1,15 +1,22 @@
 <div class="row-fluid">
-  <div class="span9" style="background: lightgreen;">
-    <h2>Heading</h2>
-    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-    <p><a class="btn" href="#">View details &raquo;</a></p>
+  <div class="span9">
+    <div class="hero-unit">
+      <h2>Wiki</h2>
+      <p><i class="icon-leaf"></i> Conjured in Django by Kyle Jake Plimack</p>
+    </div>
+    <h2>Stuff in the works:</h2>
+    <h6>in no particular order......</h6>
+    <p>
+      <ul>
+	<li>Versioning</li>
+	<li>Move Page by Section</li>
+	<li>openid</li>
+	<li>unit tests</li>
+	<li>invite a user</li>
+      </ul>
+    </p>
   </div><!--/span-->
-  <div class="span3" style="background: khaki;">
-    <h3>Recently Updated</h3>
-    <ul>
-      <li>foo</li>
-      <li>bar</li>
-      <li>baz</li>
-    </ul>
+  <div class="span3">
+    {% include "templates/content_home_lastupdated.html" %}
   </div>
 </div><!--/row-->
