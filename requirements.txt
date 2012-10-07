@@ -1,6 +1,7 @@
 django
 south
 mysql-python
+haystack
 django-profiles
 django-debug-logging
 django-debug-toolbar
