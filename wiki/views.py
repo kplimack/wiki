@@ -149,8 +149,17 @@ def page_archive(request, section_name, page_name):
 def page_new(request):
     return HttpResponseRedirect(reverse('wiki.views.index'))
 
-def section_new(request):
-    return HttpResponseRedirect(reverse('wiki.views.index'))
+def section_add(request):
+    new_section = request.POST['new_section']
+    if new_section == "":
+        return HttpResponseRedirect(reverse('wiki.views.index'))
+    try:
+        section = Section.create(new_section)
+        section.save()
+    except:
+        print "an error occurred creating Section object: %s" % new_section
+    else:
+        return HttpResponseRedirect(reverse('wiki.views.index', kwargs={'section_name': section.name}))
 
 def cleanURL(urlString):
     return "_".join(urlString.split(" "))

@@ -7,10 +7,10 @@
   <div class="modal-body">
     <div class="row-fluid">
       <div class="span12">
-        <form action="#" method="post">
+        <form action="{% url 'wiki.views.section_add' %}" method="post">
           {% csrf_token %}
           <div class="input-prepend">
-            <span class="add-on"><i class="icon-tag"></i></span><input class="input-xlarge "type="text" name="section_new">
+            <span class="add-on"><i class="icon-tag"></i></span><input class="input-xlarge "type="text" name="new_section">
           </div>
 	     <p class="help-block">New Section</p>
 
