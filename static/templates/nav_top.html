@@ -1,4 +1,6 @@
 {% load url from future %}
+{% include "templates/modal_addsection.html" %}
+{% include "templates/modal_addpage.html" %}
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
@@ -15,8 +17,8 @@
         </p>
         <ul class="nav">
           <li class="active"><a href="{% url 'wiki.views.index' %}">Home</a></li>
-          <li><a href="{% url 'wiki.views.section_new' %}">New Section</a></li>
-          <li><a href="{% url 'wiki.views.page_new' %}">New Page</a></li>
+          <li><a href="#addSectionModal" data-toggle="modal">New Section</a></li>
+          <li><a href="#addPageModal" data-toggle="modal">New Page</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>

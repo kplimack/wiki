@@ -13,7 +13,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ STATIC_URL }}/bootstrap/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <script src="{{ STATIC_URL }}/bootstrap/docs/assets/js/bootstrap.js"></script>
     <!-- end JQuery Includes -->
 
     <!-- Le styles -->
@@ -41,7 +40,21 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}/bootstrap/docs/assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}/bootstrap/docs/assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}/bootstrap/docs/assets/ico/apple-touch-icon-57-precomposed.png">
-
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $('.dropdown-menu').on('click', 'a', function(){
+            console.log("links licked: " + this.id )
+            if(this.id == "new_section_btn"){
+              $('#addPageModal').modal('hide');
+              $('#addSectionModal').modal('show');
+            } else {
+              $('#section_name').html('<i class="icon-glass icon-white"></i>&nbsp;&nbsp;' + this.id);
+              $('.dropdown-menu').dropdown('toggle');
+              return false;
+            }
+          });
+      });
+    </script>
     <script type="text/javascript">
       function insertAtCursor(areaID, text) {
         var txtarea = document.getElementById(areaID);
@@ -75,9 +88,5 @@
         }
         txtarea.scrollTop = scrollPos;
       }
-      $(document).ready(function() {
-
-
-      });
     </script>
   </head>

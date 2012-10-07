@@ -13,7 +13,7 @@ def index(request, section_name=None, page_name=None, page_mode=None):
                                   context_instance=RequestContext(request))
     else:
         u = request.user
-        nav_menu_left = getSections()
+        sections = getSections()
         breadcrumbs = [{
             'name': "Home",
             'url': 'wiki.views.index',
@@ -56,11 +56,12 @@ def index(request, section_name=None, page_name=None, page_mode=None):
         if content_page in ['home', 'section']:
             content_bag_extra['last_updated'] = getLatest()
         content_bag_common = {
-            'nav_left_menu': nav_menu_left,
+            'nav_left_menu': sections,
             'nav_left_active': active_page_name,
             'breadcrumbs': breadcrumbs,
             'user': u,
             'content_page': content_page,
+            'sections': sections,
             }
 
         content_bag = dict(content_bag_common.items() + content_bag_extra.items())
