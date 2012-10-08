@@ -5,6 +5,7 @@
 local_settings.py
 env*
 sqlite_dbs*
+thewikiproject/index.whoosh*
 
 # emacs stuff
 *~

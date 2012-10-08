@@ -4,6 +4,7 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('wiki.views',
                        url(r'login/$', 'login_user', name='wiki-login'),
                        url(r'logout/$', 'logout_user', name='wiki-logout'),
+                       url(r'^search/', include('haystack.urls')),
                        url(r'^(?P<section_name>.*)/$', 'index', name='wiki-section'),
                        url(r'^section/new$', 'section_add', name="wiki-section-new"),
                        url(r'^page/new$', 'page_add', name="wiki-page-new"),

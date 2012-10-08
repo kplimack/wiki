@@ -26,7 +26,7 @@ DATABASES = {
 #        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
 #        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'wiki',
+        'NAME': 'wiki2',
         'USER': 'wiki',
         'PASSWORD': 'wikipw',
         'HOST': 'iman',
@@ -139,6 +139,12 @@ INSTALLED_APPS = (
     'south',
     'haystack',
 )
+
+HAYSTACK_SITECONF = 'thewikiproject.search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = os.path.join(PROJECT_DIR, 'thewikiproject/index.whoosh')
+HAYSTACK_USE_REALTIME_SEARCH = False
+
 # DEBUG_TOOLBAR_PANELS = (
 #     'debug_toolbar.panels.version.VersionDebugPanel',
 #     'debug_toolbar.panels.timer.TimerDebugPanel',

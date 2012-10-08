@@ -29,8 +29,11 @@
 	  {% include "templates/content_page.html" %}
 	  {% elif content_page == 'page_edit' %}
 	  {% include "templates/page_edit.html" %}
-	  {% else %}
+	  {% elif content_page == 'home' %}
 	  {% include "templates/content_home.html" %}
+	  {% else %}
+	  {% block content %}
+	  {% endblock %}
 	  {% endif %}
 	</div><!--/span-->
       </div><!--/row-->
