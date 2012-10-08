@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.contrib.auth.models import *
 from django.contrib.auth import login, authenticate, logout
+import urllib, hashlib
 from wiki.models import *
 import re
 
@@ -55,6 +56,8 @@ def index(request, section_name=None, page_name=None, page_mode=None):
                 content_bag_extra['page'] = page
         if content_page in ['home', 'section']:
             content_bag_extra['last_updated'] = getLatest()
+        if content_page in ['home']:
+            content_bag_extra['gravatar'] = getGravatar(u.email)
         content_bag_common = {
             'nav_left_menu': sections,
             'nav_left_active': active_page_name,
@@ -164,7 +167,7 @@ def page_add(request):
                     }))
 
 def section_add(request):
-    new_section = request.POST['new_section']
+    new_section = cleanURL(request.POST['new_section'])
     if new_section == "":
         return HttpResponseRedirect(reverse('wiki.views.index'))
     try:
@@ -210,3 +213,10 @@ def renderPage(content):
         else:
             print "could not match headers in: %s" % line
     return (page_rendered, toc)
+
+def getGravatar(user_email):
+    default = "http://critterapp.pagodabox.com/img/user.jpg"
+    size = 40
+
+    gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(user_email.lower()).hexdigest()
+    return gravatar_url
