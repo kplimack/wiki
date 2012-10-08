@@ -1,26 +1,30 @@
 {% load url from future %}
 {% include "templates/modal_addsection.html" %}
 {% include "templates/modal_addpage.html" %}
-<div class="navbar navbar-inverse navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container-fluid">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <a class="brand" href="#">Wiki</a>
-      <div class="nav-collapse collapse">
-        <p class="navbar-text pull-right">
-          <a href="{% url 'wiki.views.logout_user' %}" class="navbar-link">LOGOUT ( <i class="icon-user icon-white"></i> {{ user.first_name }} {{ user.last_name }} )</a> &nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="text" class="search-query" placeholder="Search">
-        </p>
-        <ul class="nav">
-          <li class="active"><a href="{% url 'wiki.views.index' %}">Home</a></li>
-          <li><a href="#addSectionModal" data-toggle="modal">New Section</a></li>
-          <li><a href="#addPageModal" data-toggle="modal">New Page</a></li>
-        </ul>
-      </div><!--/.nav-collapse -->
+<form class="form-search form-inline" action="/search" method="get">
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Wiki</a>
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+            <a href="{% url 'wiki.views.logout_user' %}" class="navbar-link">LOGOUT ( <i class="icon-user icon-white"></i> {{ user.first_name }} {{ user.last_name }} )</a> &nbsp;&nbsp;&nbsp;&nbsp;
+
+            <input type="text" class="search-query" placeholder="Search" name="q">
+
+          </p>
+          <ul class="nav">
+            <li class="active"><a href="{% url 'wiki.views.index' %}">Home</a></li>
+            <li><a href="#addSectionModal" data-toggle="modal">New Section</a></li>
+            <li><a href="#addPageModal" data-toggle="modal">New Page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
     </div>
   </div>
-</div>
+</form>

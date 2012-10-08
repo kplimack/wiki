@@ -9,14 +9,14 @@
     <tr>
       <td>&nbsp;</td>
       <td>
-        <input type="submit" value="Search">
+        <input type="submit" class="btn btn-primary pull-right" value="Search">
       </td>
     </tr>
   </table>
   {% if query %}
   <h3>Results</h3>
 
-
+  {% if page.object_list %}
   <table class="table table-condensed table-hover">
     <thead>
       <tr>
@@ -28,6 +28,7 @@
       </tr>
     </thead>
     <tbody>
+      {% endif %}
       {% for p in page.object_list %}
       <tr>
         <td><a href="#"><i class="icon-star-empty"></i></a></td>
