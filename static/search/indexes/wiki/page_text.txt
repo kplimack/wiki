@@ -1,2 +1,4 @@
 {{ object.name }}
 {{ object.content }}
+{{ object.updated_at }}
+{{ object.section }}

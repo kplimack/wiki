@@ -1,4 +1,5 @@
 {% extends "templates/index.html" %}
+{% load url from future %}
 {% block content %}
 <h2>Search</h2>
 
@@ -14,17 +15,33 @@
   </table>
   {% if query %}
   <h3>Results</h3>
-  {% for p in page.object_list %}
-  {{ p.name }} | {{ p.user }}<br />
-  {% endfor %}
+
+
+  <table class="table table-condensed table-hover">
+    <thead>
+      <tr>
+        <th class="span1">Favorite&nbsp;&nbsp;&nbsp;</th>
+        <th class="span1">Author</th>
+        <th class="span1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Section</th>
+        <th class="span6">Page</th>
+        <th class="span4">Modified</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in page.object_list %}
+      <tr>
+        <td><a href="#"><i class="icon-star-empty"></i></a></td>
+        <td><strong>{{ p.user }}</strong></td>
+        <td><span class="label pull-right">{{ p.section }}</span></td>
+        <td><a href="{% url 'wiki.views.index' p.section p.name %}"><strong>{{ p.name }}</strong></a></td>
+        <td><strong>{{ p.updated_at }}</strong></td>
+      </tr>
+      {% empty %}
+      <p>No results found.</p>
+      {% endfor %}
+    </tbody>
+  </table>
   <hr />
-  {% for result in page.object_list %}
-  <p>
-    <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
-  </p>
-  {% empty %}
-  <p>No results found.</p>
-  {% endfor %}
   {% if page.has_previous or page.has_next %}
   <div>
     {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}

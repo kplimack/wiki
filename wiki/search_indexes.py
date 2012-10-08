@@ -12,6 +12,8 @@ class PageIndex(BaseSearch):
     text = indexes.CharField(document=True, use_template=True)
     name = indexes.CharField(model_attr='name')
     user = indexes.CharField(model_attr='user')
+    section = indexes.CharField(model_attr='section')
+    updated_at = indexes.DateTimeField(model_attr='updated_at')
     content = indexes.CharField(model_attr='content')
 
     def get_model(self):
