@@ -1,6 +1,7 @@
 wiki
 ====
-Rewriting this from scratch again
+A simple wiki platform utilizing twitter-bootstrap.
+This is my first django project, and now that I've done a few more, it's time for me to refactor.  I'd like the views to work more like they do in Basejump
 
 Aboot
 ===
