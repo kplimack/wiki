@@ -140,9 +140,12 @@ INSTALLED_APPS = (
     'haystack',
 )
 
-HAYSTACK_SITECONF = 'thewikiproject.search_sites'
-HAYSTACK_SEARCH_ENGINE = 'whoosh'
-HAYSTACK_WHOOSH_PATH = os.path.join(PROJECT_DIR, 'thewikiproject/index.whoosh')
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}
 HAYSTACK_USE_REALTIME_SEARCH = False
 
 # DEBUG_TOOLBAR_PANELS = (
