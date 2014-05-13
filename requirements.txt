@@ -5,7 +5,4 @@ mysql-python
 django-haystack
 django-profiles
 django-debug-logging
-django-debug-toolbar
-django-debug
-django-debug-toolbar-extra
 gunicorn
