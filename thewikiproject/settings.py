@@ -138,6 +138,7 @@ INSTALLED_APPS = (
     'wiki',
     'south',
     'haystack',
+    'gunicorn',
 )
 
 HAYSTACK_CONNECTIONS = {
