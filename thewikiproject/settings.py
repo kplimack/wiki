@@ -11,7 +11,7 @@ PROJECT_DIR = os.path.abspath(os.path.dirname(__file__)) + '/../'
 AUTH_PROFILE_MODULE = "wiki.Author"
 
 ADMINS = (
-     ('Kyle Jake Plimack', 'kyle.plimack@gmail.com'),
+     ('Jake Plimack', 'jake.plimack@gmail.com'),
 )
 MANAGERS = ADMINS
 
